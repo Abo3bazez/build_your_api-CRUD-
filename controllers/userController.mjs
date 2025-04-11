@@ -26,4 +26,31 @@ const addUsers = async (req, res, next) => {
   }
 };
 
-export { getUsers, addUsers };
+const updateUser = async (req, res, next) => {
+  let { old_first_name, old_last_name, old_mail } = req.body.query;
+  let { new_first_name, new_last_name, new_mail } = req.body.update;
+
+  try {
+    const user = await getDB()
+      .collection("users")
+      .updateOne(
+        {
+          first_name: old_first_name,
+          last_name: old_last_name,
+          mail: old_mail,
+        },
+        {
+          $set: {
+            // Use the $set operator to specify the fields to update
+            first_name: new_first_name,
+            last_name: new_last_name,
+            mail: new_mail,
+          },
+        }
+      );
+    res.send(user);
+  } catch (err) {
+    next(err);
+  }
+};
+export { getUsers, addUsers, updateUser };
