@@ -1,8 +1,9 @@
 import express from "express";
 const router = express.Router();
-import { getUsers } from "../controllers/userController.mjs"; // Fix the import statement
+import { getUsers, addUsers } from "../controllers/userController.mjs"; // Fix the import statement
 
 router.get("/", getUsers);
+router.post("/", addUsers);
 
 // TODO :-
 // supporte show, update, delete user or group of users

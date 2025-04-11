@@ -9,4 +9,21 @@ const getUsers = async (req, res, next) => {
   }
 };
 
-export { getUsers };
+const addUsers = async (req, res, next) => {
+  let { first_name, last_name, age, country, mail, gender } = req.body;
+  try {
+    const user = await getDB().collection("users").insertOne({
+      first_name: first_name,
+      last_name: last_name,
+      mail: mail,
+      gender: gender,
+      country: country,
+      age: age,
+    });
+    res.send(user);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export { getUsers, addUsers };
