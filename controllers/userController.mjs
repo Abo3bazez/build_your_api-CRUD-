@@ -53,4 +53,14 @@ const updateUser = async (req, res, next) => {
     next(err);
   }
 };
-export { getUsers, addUsers, updateUser };
+
+const deleteUser = async (req, res, next) => {
+  let { mail } = req.body;
+  try {
+    const user = await getDB().collection("users").deleteOne({ mail: mail });
+    res.send(user);
+  } catch (err) {
+    next(err);
+  }
+};
+export { getUsers, addUsers, updateUser, deleteUser };
