@@ -1,5 +1,10 @@
 import { getDB } from "../utils/db.mjs";
+import { ResultFormatter } from "../utils/handleResult.mjs";
+// TODO add global error handling [Done]
+// TODO add custom search filters
 
+// TODO class object to manage the result
+// TODO class object to manage destructuring of the request body
 const getUsers = async (req, res, next) => {
   try {
     const users = await getDB().collection("users").find().toArray(); // Convert cursor to array
@@ -12,7 +17,7 @@ const getUsers = async (req, res, next) => {
 const addUsers = async (req, res, next) => {
   let { first_name, last_name, age, country, mail, gender } = req.body;
   try {
-    const user = await getDB().collection("users").insertOne({
+    const result = await getDB().collection("users").insertOne({
       first_name: first_name,
       last_name: last_name,
       mail: mail,
@@ -20,7 +25,8 @@ const addUsers = async (req, res, next) => {
       country: country,
       age: age,
     });
-    res.send(user);
+    const formattedResult = new ResultFormatter(result).format();
+    res.send(formattedResult);
   } catch (err) {
     next(err);
   }
@@ -31,7 +37,7 @@ const updateUser = async (req, res, next) => {
   let { new_first_name, new_last_name, new_mail } = req.body.update;
 
   try {
-    const user = await getDB()
+    const result = await getDB()
       .collection("users")
       .updateOne(
         {
@@ -48,7 +54,8 @@ const updateUser = async (req, res, next) => {
           },
         }
       );
-    res.send(user);
+    const formattedResult = new ResultFormatter(result).format();
+    res.send(formattedResult);
   } catch (err) {
     next(err);
   }
@@ -57,10 +64,12 @@ const updateUser = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
   let { mail } = req.body;
   try {
-    const user = await getDB().collection("users").deleteOne({ mail: mail });
-    res.send(user);
+    const result = await getDB().collection("users").deleteOne({ mail: mail });
+    const formattedResult = new ResultFormatter(result).format();
+    res.send(formattedResult);
   } catch (err) {
     next(err);
   }
 };
+
 export { getUsers, addUsers, updateUser, deleteUser };

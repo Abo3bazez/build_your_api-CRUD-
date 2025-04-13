@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CRUD API Project</title>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        background: linear-gradient(
+          135deg,
+          oklch(95% 0.04 70),
+          oklch(94% 0.05 170),
+          oklch(96% 0.03 300),
+          oklch(93% 0.05 40)
+        );
+        background-size: 500% 500%;
+        animation: gradientShift 40s ease infinite;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .welcome {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        animation: fadeIn 1.5s ease forwards;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(15px);
+        padding: 3rem 2rem;
+        border-radius: 1.5rem;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+        animation: fadeIn 1.5s ease-in-out;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+        margin-bottom: 1.8rem;
+        line-height: 1.6;
+      }
+
+      a.github-link {
+        text-decoration: none;
+        color: #222;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.1rem;
+        background: rgba(255, 255, 255, 0.4);
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        img {
+          height: 20px;
+          width: auto;
+        }
+      }
+
+      a.github-link:hover {
+        background: rgba(255, 255, 255, 0.7);
+        color: #000;
+      }
+
+      .tech-stack {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .tech-stack img {
+        height: 75px;
+        width: auto;
+        transition: transform 0.3s ease;
+      }
+
+      .tech-stack img:hover {
+        transform: scale(1.1);
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+
+        .tech-stack img {
+          height: 40px;
+        }
+
+        .welcome {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+
+    <div class="welcome">👋 Welcome to the CRUD API Project</div>
+
+    <div class="container">
+      <h1>CRUD API</h1>
+      <p>
+        A full-featured RESTful API built with <strong>MongoDB</strong>,
+        <strong>Express.js</strong>, and <strong>Node.js</strong>. <br />
+        Designed for learning and practicing back-end development, including
+        routing, controllers, and database integration.
+      </p>
+
+      <a
+        href="https://github.com/Abo3bazez/build_your_api_CRUD"
+        target="_blank"
+        class="github-link"
+      >
+        View on GitHub <img src="./assets/github.svg" alt="github logo" />
+      </a>
+
+      <div class="tech-stack">
+        <img src="./assets/mongodb-svgrepo-com-2.svg" alt="MongoDB" />
+        <img src="./assets/express-svgrepo-com-2.svg" alt="Express.js" />
+        <img src="./assets/node-brands.svg" alt="Node.js" />
+      </div>
+    </div>
+  </body>
+</html>
