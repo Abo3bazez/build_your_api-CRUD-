@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found</title>
+    <style>
+      :root {
+        --primary-color: #4caf50; /* A soft green */
+        --secondary-color: #ff9800; /* A warm orange */
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: "Roboto", sans-serif;
+        color: var(--primary-color);
+        text-align: center;
+        overflow: hidden;
+        background: linear-gradient(120deg, #000, #222, #333);
+        background-size: 300% 300%;
+        animation: gradientAnimation 6s infinite alternate;
+      }
+
+      h1 {
+        font-size: 8rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: var(--secondary-color);
+      }
+
+      a {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: transparent;
+        border: 2px solid var(--primary-color);
+        border-radius: 8px;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      a:hover {
+        color: var(--secondary-color);
+        border-color: var(--secondary-color);
+      }
+
+      @keyframes gradientAnimation {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 5rem;
+        }
+
+        p {
+          font-size: 1.2rem;
+        }
+
+        a {
+          font-size: 1rem;
+          padding: 0.8rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>404</h1>
+    <p>Oops! The page you're looking for doesn't exist.</p>
+    <a href="/">Go Back Home</a>
+  </body>
+</html>

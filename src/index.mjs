@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectToMongo } from "../utils/db.mjs"; // Import the MongoDB connection function
 import { router } from "../routes/userRoutes.mjs";
-
+import errorHandler from "../middleware/errorHandler.mjs";
 dotenv.config();
 
 const app = express();
@@ -31,6 +31,4 @@ app.listen(PORT, () => {
 });
 
 // Global Error Handling
-app.all("/*splat", (req, res, next) => {
-  res.status(404).send(`404 Could Not Find This Resource`);
-});
+app.all("/*splat", errorHandler);
