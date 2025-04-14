@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon ./src/index.mjs"
+    "start:dev-server": "nodemon ./src/index.mjs",
+    "start:html-server": "live-server index.html"
   },
   "type": "module",
   "keywords": [],
@@ -17,6 +18,7 @@
     "mongodb": "^6.15.0"
   },
   "devDependencies": {
+    "live-server": "^1.2.2",
     "nodemon": "^3.1.9"
   }
 }
