@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Winky Rough", sans-serif;
+        display: flex;
+        place-content: center;
+        place-items: center;
+        width: 100%;
+      }
+
+      .container {
+        padding: 5rem 2.5rem;
+        width: 100%;
+        h1 {
+          text-align: center;
+          margin-bottom: 1.5rem;
+          font-size: 3rem;
+        }
+        ul {
+          display: flex;
+          place-content: center;
+          li {
+            list-style-type: none;
+            margin-right: 2.5rem;
+            p {
+              span {
+                display: block;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+      .users-box {
+        margin-top: 2rem;
+        display: flex;
+        place-content: center;
+        place-items: center;
+        table {
+          width: 100%;
+          /* border: 1px solid black; */
+          /* border-radius: 8px; */
+          /* padding: 5px 10px; */
+          border-collapse: collapse;
+          thead {
+            text-align: center;
+            font-weight: bold;
+          }
+          tr,
+          td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+          }
+          tr:hover {
+            background-color: #d6eeee;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="upper-part">
+        <h1>Users List</h1>
+        <ul>
+          <li>
+            <p>User Counter <br /><span>Number</span></p>
+          </li>
+          <li>
+            <p>Total Movies<br /><span>Number</span></p>
+          </li>
+          <li>
+            <p>Reviews<br /><span>Number</span></p>
+          </li>
+        </ul>
+      </div>
+      <div class="users-box">
+        <table>
+          <thead>
+            <tr>
+              <td>First Name</td>
+              <td>Last Name</td>
+              <td>Gender</td>
+              <td>Age</td>
+              <td>Country</td>
+              <td>Mail</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(user => { %>
+            <tr>
+              <td><%= user.first_name %></td>
+              <td><%= user.last_name %></td>
+              <td><%= user.gender%></td>
+              <td><%= user.age %></td>
+              <td><%= user.country %></td>
+              <td><%= user.mail %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

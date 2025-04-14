@@ -1,5 +1,6 @@
 import { getDB } from "../utils/db.mjs";
 import { ResultFormatter } from "../utils/handleResult.mjs";
+
 // TODO add global error handling [Done]
 // TODO add custom search filters
 
@@ -8,7 +9,7 @@ import { ResultFormatter } from "../utils/handleResult.mjs";
 const getUsers = async (req, res, next) => {
   try {
     const users = await getDB().collection("users").find().toArray(); // Convert cursor to array
-    res.send(users); // Send the array of users
+    res.render("users", { users }); // Send the array of users
   } catch (err) {
     next(err); // Pass the error to the error-handling middleware
   }
