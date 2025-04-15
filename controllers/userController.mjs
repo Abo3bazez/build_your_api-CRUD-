@@ -19,20 +19,23 @@ const getUsers = async (req, res, next) => {
 };
 
 const addUsers = async (req, res, next) => {
-  let { first_name, last_name, age, country, mail, gender } = req.body;
+  const { first_name, last_name, gender, age, country, mail } = req.body;
+
   try {
-    const result = await getDB().collection("users").insertOne({
-      first_name: first_name,
-      last_name: last_name,
-      mail: mail,
-      gender: gender,
-      country: country,
-      age: age,
-    });
-    const formattedResult = new ResultFormatter(result).format();
-    res.send(formattedResult);
+    const result = await getDB()
+      .collection("users")
+      .insertOne({
+        first_name,
+        last_name,
+        gender,
+        age: parseInt(age), // Ensure age is stored as a number
+        country,
+        mail,
+      });
+
+    res.redirect("/users"); // Redirect back to the users page after adding
   } catch (err) {
-    next(err);
+    next(err); // Pass the error to the error-handling middleware
   }
 };
 
