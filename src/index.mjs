@@ -12,8 +12,9 @@ app.set("view engine", "ejs");
 
 app.use(express.static("views"));
 
-// Middleware to parse JSON
+// Middleware to parse JSON and form data
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Connect to MongoDB
 connectToMongo();
@@ -27,7 +28,7 @@ app.get("/", (req, res, next) => {
 
 // Fire The Server
 app.listen(PORT, () => {
-  console.log(`Connection Setup on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
 
 // Global Error Handling
