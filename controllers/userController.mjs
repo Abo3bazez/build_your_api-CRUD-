@@ -9,7 +9,10 @@ import { ResultFormatter } from "../utils/handleResult.mjs";
 const getUsers = async (req, res, next) => {
   try {
     const users = await getDB().collection("users").find().toArray(); // Convert cursor to array
-    res.render("users", { users }); // Send the array of users
+    const countriesList = await getDB().collection("users").distinct("country");
+    const countryNumber = countriesList.length;
+    const usersNumber = users.length;
+    res.render("users", { users, usersNumber, countryNumber }); // Send the array of users
   } catch (err) {
     next(err); // Pass the error to the error-handling middleware
   }
