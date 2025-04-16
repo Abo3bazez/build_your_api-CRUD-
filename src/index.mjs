@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectToMongo } from "../utils/db.mjs"; // Import the MongoDB connection function
 import { router } from "../routes/userRoutes.mjs";
 import errorHandler from "../middleware/errorHandler.mjs";
+import methodOverride from "method-override";
 dotenv.config();
 
 const app = express();
@@ -15,6 +16,9 @@ app.use(express.static("views"));
 // Middleware to parse JSON and form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Use method-override to handle DELETE methods
+app.use(methodOverride("_method"));
 
 // Connect to MongoDB
 connectToMongo();

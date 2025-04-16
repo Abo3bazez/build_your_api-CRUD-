@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
+    <script src="../utils/deleteuser.mjs" defer></script>
     <style>
       * {
         margin: 0;
@@ -66,6 +67,17 @@
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+          }
+          td {
+            button {
+              background-color: #ff5a5a;
+              color: black;
+              font-weight: bold;
+              padding: 5px 8px;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            }
           }
           tr:hover {
             background-color: #d6eeee;
@@ -130,6 +142,21 @@
 
       .submit-btn:hover {
         background: #45a049;
+      }
+
+      .delete-btn {
+        background-color: #ff5a5a;
+        color: white;
+        font-weight: bold;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .delete-btn:hover {
+        background-color: #e04e4e;
       }
     </style>
   </head>
@@ -228,6 +255,14 @@
               <td><%= user.age %></td>
               <td><%= user.country %></td>
               <td><%= user.mail %></td>
+              <td>
+                <form
+                  action="/users/<%= user._id %>?_method=DELETE"
+                  method="post"
+                >
+                  <button type="submit" class="delete-btn">Delete User</button>
+                </form>
+              </td>
             </tr>
             <% }) %>
           </tbody>

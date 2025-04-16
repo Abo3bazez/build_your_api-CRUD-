@@ -1,5 +1,6 @@
 import { getDB } from "../utils/db.mjs";
 import { ResultFormatter } from "../utils/handleResult.mjs";
+import { ObjectId } from "mongodb"; // Import ObjectId from mongodb
 
 // TODO add global error handling [Done]
 // TODO add custom search filters
@@ -69,13 +70,20 @@ const updateUser = async (req, res, next) => {
 };
 
 const deleteUser = async (req, res, next) => {
-  let { mail } = req.body;
+  const userId = req.params.id; // Get the user ID from the URL
+
   try {
-    const result = await getDB().collection("users").deleteOne({ mail: mail });
-    const formattedResult = new ResultFormatter(result).format();
-    res.send(formattedResult);
+    const result = await getDB()
+      .collection("users")
+      .deleteOne({ _id: new ObjectId(userId) }); // Use ObjectId to match the MongoDB document ID
+
+    if (result.deletedCount > 0) {
+      res.redirect("/users"); // Redirect back to the users page after deletion
+    } else {
+      res.status(404).send("User not found");
+    }
   } catch (err) {
-    next(err);
+    next(err); // Pass the error to the error-handling middleware
   }
 };
 
